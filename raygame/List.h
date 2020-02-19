@@ -58,14 +58,14 @@ int List<T>::Length()
 	return mCount;
 }
 
-//
+//returns the first node of the list
 template<typename T>
 T List<T>::front()
 {
 	return first;
 }
 
-//
+//returns the last node of the list
 template<typename T>
 T List<T>::back()
 {
