@@ -62,14 +62,14 @@ int List<T>::Length()
 template<typename T>
 T List<T>::front()
 {
-	return first;
+	return first ->info;
 }
 
 //returns the last node of the list
 template<typename T>
 T List<T>::back()
 {
-	return last;
+	return last->info;
 }
 
 //
@@ -113,6 +113,8 @@ List<T>::~List()
 template<typename T>
 void List<T>::copyList(List<T>& list)
 {
-	Node<T>* iter = &(*this->first);
-	Node<T>* iter2 = &(*other.first);
+	this->first = &(*list->first);
+	this->last = &(*list->last);
+	mCount = list.Length();
+	delete list;
 }
