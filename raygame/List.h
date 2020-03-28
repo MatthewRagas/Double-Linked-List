@@ -25,7 +25,6 @@ public:
 	Iterator<T> begin();
 	Iterator<T> end();
 	List();
-	List(List<T>& list);
 	~List();
 
 private:
@@ -37,7 +36,7 @@ template<typename T>
 void List<T>::initializeList()
 {
 	mCoutn = 0;
-	first = last;
+	first = nullptr;
 	last = nullptr;
 }
 
@@ -92,14 +91,7 @@ Iterator<T> List<T>::end()
 template<typename T>
 List<T>::List()
 {
-
-}
-
-//custom constructor
-template<typename T>
-List<T>::List(List<T>& list)
-{
-
+	initializeList();
 }
 
 //Deconstructor

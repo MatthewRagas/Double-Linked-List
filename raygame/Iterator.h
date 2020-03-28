@@ -6,23 +6,23 @@ class Iterator
 {
 public:
 	Iterator();
-	Iterator(Node* ptr);
+	Iterator(Node<T>* ptr);
 	T operator*();
-	Iterator operator++();
-	Iterator operator--();
-	bool operator==(const Iterator<T>& iter)const;
-	bool operator!=(const Iterator<T>& iter)const;
-	~Iterator();
+	Iterator<T> operator++();
+	Iterator<T> operator--();
+	bool operator ==(const Iterator<T>& iter)const;
+	bool operator !=(const Iterator<T>& iter)const;
+	~Iterator() {}
 
 private:
-	Node* current;
+	Node<T>* current;
 };
 
 //Default constructor
 template<typename T>
 Iterator<T>::Iterator()
 {
-
+	current = nullptr;
 }
 
 //custom constructor
@@ -43,26 +43,44 @@ T Iterator<T>::operator*()
 template<typename T>
 Iterator<T> Iterator<T>::operator++()
 {
-	return current = current->next;
+	if (current->next != nullptr)
+	{
+		current = current->next;
+		return *this;
+	}		
+	return nullptr;
 }
 
 //overloading the subtraction operator "--"
 template<typename T>
 Iterator<T> Iterator<T>::operator--()
 {
-	current = current->previous;
+	if (current->previous != nullptr) {
+		current = current->previous;
+		return *this;
+	}
+	return nullptr;
 }
 
 //overloading the equals operator "=="
 template<typename T>
 bool Iterator<T>::operator==(const Iterator<T>& iter)const
 {
-	return current == iter.current;
+	if (currentNode != nullptr && currentIterator.currentNode != nullptr 
+		&& &currentNode->info == &currentIterator.currentNode->info)
+	{
+		return true;
+	}
+	else return false;
 }
 
 //overloading the not equals operator "!="
 template<typename T>
 bool Iterator<T>::operator!=(const Iterator<T>& iter)const
 {
-	return != iter.current;
+	if (currentNode != nullptr && currentIterator.currentNode != nullptr 
+		&& &currentNode->info != &currentIterator.currentNode->info) {
+		return true;
+	}
+	else return false;
 }
